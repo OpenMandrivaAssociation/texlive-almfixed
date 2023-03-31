@@ -1,6 +1,6 @@
 Name:		texlive-almfixed
 Version:	35065
-Release:	1
+Release:	2
 Summary:	Arabic-Latin Modern Fixed extends TeX-Gyre Latin Modern Mono 10 Regular to full Arabic Unicode support
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/macros/latex/contrib/almfixed
