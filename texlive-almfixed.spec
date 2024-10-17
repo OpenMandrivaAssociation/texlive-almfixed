@@ -3,7 +3,7 @@ Version:	35065
 Release:	2
 Summary:	Arabic-Latin Modern Fixed extends TeX-Gyre Latin Modern Mono 10 Regular to full Arabic Unicode support
 Group:		Publishing
-URL:		http://www.ctan.org/tex-archive/macros/latex/contrib/almfixed
+URL:		https://www.ctan.org/tex-archive/macros/latex/contrib/almfixed
 License:	gfl
 Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/almfixed.r%{version}.tar.xz
 Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/almfixed.doc.r%{version}.tar.xz
