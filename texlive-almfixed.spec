@@ -12,7 +12,7 @@ License:	gfl
 Source0:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/almfixed.r%{tl_revision}.tar.xz
 Source1:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/almfixed.doc.r%{tl_revision}.tar.xz
 BuildArch:	noarch
-Requires(pre):	texlive-tlpkg
+BuildSystem:	texlive
 Provides:	texlive(%{tl_name}) = %{tl_revision}
 
 %description
@@ -35,60 +35,3 @@ within any text editor or processor. The author believes this is the
 very first OpenType Arabic font ever to have this capability. Editing
 complex Arabic texts will now be much easier to input and to proofread.
 
-%prep
-%setup -q -c -a1
-rm -rf tlpkg
-if [ -d RELOC ]; then
-	cp -a RELOC/. .
-	rm -rf RELOC
-fi
-
-%build
-
-%install
-mkdir -p %{buildroot}%{_datadir}/texmf-dist
-# Flat tlnet layout: tex/ doc/ source/ fonts/ ... -> texmf-dist/
-if [ -d texmf-dist ]; then
-	cp -a texmf-dist/. %{buildroot}%{_datadir}/texmf-dist/
-elif [ -d texmf ]; then
-	mkdir -p %{buildroot}%{_datadir}/texmf
-	cp -a texmf/. %{buildroot}%{_datadir}/texmf/
-else
-	for d in * .[!.]* ..?*; do
-		[ -e "$d" ] || continue
-		case "$d" in tlpkg|RELOC) continue ;; esac
-		cp -a "$d" %{buildroot}%{_datadir}/texmf-dist/
-	done
-fi
-rm -rf %{buildroot}%{_datadir}/texmf-dist/tlpkg
-
-%files
-%dir %{_datadir}/texmf-dist
-%dir %{_datadir}/texmf-dist/doc
-%dir %{_datadir}/texmf-dist/fonts
-%dir %{_datadir}/texmf-dist/doc/fonts
-%dir %{_datadir}/texmf-dist/fonts/opentype
-%dir %{_datadir}/texmf-dist/fonts/truetype
-%dir %{_datadir}/texmf-dist/doc/fonts/almfixed
-%dir %{_datadir}/texmf-dist/fonts/opentype/public
-%dir %{_datadir}/texmf-dist/fonts/truetype/public
-%dir %{_datadir}/texmf-dist/fonts/opentype/public/almfixed
-%dir %{_datadir}/texmf-dist/fonts/truetype/public/almfixed
-%doc %{_datadir}/texmf-dist/doc/fonts/almfixed/README
-%doc %{_datadir}/texmf-dist/doc/fonts/almfixed/Unibook_0600.pdf
-%doc %{_datadir}/texmf-dist/doc/fonts/almfixed/Unibook_0750.pdf
-%doc %{_datadir}/texmf-dist/doc/fonts/almfixed/Unibook_08A0.pdf
-%doc %{_datadir}/texmf-dist/doc/fonts/almfixed/Unibook_FB50-1.pdf
-%doc %{_datadir}/texmf-dist/doc/fonts/almfixed/Unibook_FB50-2.pdf
-%doc %{_datadir}/texmf-dist/doc/fonts/almfixed/Unibook_FB50-3.pdf
-%doc %{_datadir}/texmf-dist/doc/fonts/almfixed/Unibook_FE70.pdf
-%doc %{_datadir}/texmf-dist/doc/fonts/almfixed/almfixed-dtk.pdf
-%doc %{_datadir}/texmf-dist/doc/fonts/almfixed/almfixed-dtk.tex
-%doc %{_datadir}/texmf-dist/doc/fonts/almfixed/almmono10-sample-crop.pdf
-%doc %{_datadir}/texmf-dist/doc/fonts/almfixed/aristoteles.pdf
-%doc %{_datadir}/texmf-dist/doc/fonts/almfixed/fawaid-427-crop.pdf
-%doc %{_datadir}/texmf-dist/doc/fonts/almfixed/ilahiyyat-1.pdf
-%doc %{_datadir}/texmf-dist/doc/fonts/almfixed/sc-unipad.pdf
-%doc %{_datadir}/texmf-dist/doc/fonts/almfixed/wa.pdf
-%{_datadir}/texmf-dist/fonts/opentype/public/almfixed/almfixed.otf
-%{_datadir}/texmf-dist/fonts/truetype/public/almfixed/almfixed.ttf
